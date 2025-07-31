@@ -1,0 +1,19 @@
+transaction-explainer/
+├── public/                     # Tài nguyên tĩnh (favicon, index.html...)
+├── src/
+│   ├── assets/                # Icon, hình ảnh (nếu có)
+│   ├── components/            # Các component giao diện
+│   │   ├── TxForm.tsx         # Form nhập transaction signature
+│   │   ├── TxResult.tsx       # Hiển thị kết quả mô tả
+│   │   └── RawJsonView.tsx    # (optional) Hiển thị JSON gốc
+│   ├── utils/                 # Các hàm xử lý logic
+│   │   ├── fetchTx.ts         # Gọi RPC để lấy transaction
+│   │   ├── parseTx.ts         # Phân tích nội dung transaction
+│   │   └── explainTx.ts       # Chuyển instruction thành mô tả dễ hiểu
+│   ├── App.tsx                # Giao diện chính
+│   ├── main.tsx               # Điểm khởi chạy React
+│   └── index.css              # CSS tổng thể (hoặc dùng Tailwind)
+├── .env                       # (optional) RPC URL nếu muốn config riêng
+├── package.json               # Cấu hình dự án
+├── README.md                  # Mô tả dự án
+└── vite.config.ts             # Cấu hình Vite (nếu dùng Vite)
