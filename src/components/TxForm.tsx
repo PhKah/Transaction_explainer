@@ -15,24 +15,29 @@ export default function TxForm({ onSubmit }: TxFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <label htmlFor="tx-input" className="block font-medium">
-        Nhập Transaction Signature:
-      </label>
-      <input
-        id="tx-input"
-        type="text"
-        value={txSig}
-        onChange={(e) => setTxSig(e.target.value)}
-        placeholder="Dán tx signature tại đây"
-        className="w-full px-3 py-2 border rounded"
-      />
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Giải thích
-      </button>
-    </form>
+  // Cập nhật form thành:
+<form onSubmit={handleSubmit} className="form-container">
+  <p className="subtitle">
+    Hiểu rõ giao dịch Solana trước khi ký. Giảm rủi ro bảo vệ tài sản.
+  </p>
+
+  <div className="input-row">
+    <label htmlFor="tx-input" className="input-label">
+      Nhập Transaction Signature:
+    </label>
+    <input
+      id="tx-input"
+      type="text"
+      value={txSig}
+      onChange={(e) => setTxSig(e.target.value)}
+      placeholder="Dán tx signature tại đây"
+      className="input-field"
+    />
+  </div>
+
+  <button type="submit" className="submit-btn">
+    Giải thích
+  </button>
+</form>
   );
 }

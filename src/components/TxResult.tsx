@@ -1,20 +1,46 @@
+import React from "react";
+
 interface TxResultProps {
   descriptions: string[];
 }
 
-export default function TxResult({ descriptions }: TxResultProps) {
+function getIconPrefix(text: string): string {
+  if (text.startsWith("✅")) return "✅";
+  if (text.startsWith("⚠️")) return "⚠️";
+  if (text.startsWith("❌")) return "❌";
+  if (text.startsWith("ℹ️")) return "ℹ️";
+  return "🔎";
+}
+
+function getColorClass(icon: string): string {
+  switch (icon) {
+    case "✅": return "tx-safe";
+    case "⚠️": return "tx-warning";
+    case "❌": return "tx-danger";
+    case "ℹ️": return "tx-info";
+    default: return "tx-default";
+  }
+}
+
+const TxResult: React.FC<TxResultProps> = ({ descriptions }) => {
   if (descriptions.length === 0) return null;
 
   return (
-    <div className="mt-6 space-y-3">
-      {descriptions.map((desc, i) => (
-        <div
-          key={i}
-          className="bg-gray-100 p-3 rounded shadow-sm text-sm text-gray-800"
-        >
-          {desc}
-        </div>
-      ))}
+    <div className="tx-result">
+      {descriptions.map((desc, i) => {
+        const icon = getIconPrefix(desc);
+        const message = desc.replace(/^[✅⚠️❌ℹ️]/, "").trim();
+        const colorClass = getColorClass(icon);
+
+        return (
+          <div key={i} className={`tx-card ${colorClass}`}>
+            <span className="emoji-prefix" title={icon}>{icon}</span>
+            <span className="tx-message">{message}</span>
+          </div>
+        );
+      })}
     </div>
   );
-}
+};
+
+export default TxResult;
